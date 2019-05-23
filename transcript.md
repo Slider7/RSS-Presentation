@@ -53,7 +53,7 @@ ReactDOM.render(
 ~~~~
 The entry point for our app is <div id="root"></div>. So we’re simply saying to React: "Please, render the Hello component, inside the DOM node with an id of root."
 ### JSX  
-The HTML-like strings (<h1> and <Hello/>) is the JSX code. It’s not actually HTML, it is closer to JavaScript. JavaScript expressions can be embedded in JSX using curly braces, including variables, functions, and properties.
+The HTML-like strings (`<h1>` and `<Hello />`) is the JSX code. It’s not actually HTML, it is closer to JavaScript. JavaScript expressions can be embedded in JSX using curly braces, including variables, functions, and properties.
 Look at two lines of code: 
 JSX:
 `const heading = <h1 className="site-heading">Hello, React</h1>`
