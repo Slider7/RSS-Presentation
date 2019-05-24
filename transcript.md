@@ -8,10 +8,10 @@ It is a library for build view layer of an MVC application (Model View Controlle
 I will try to give you a basic understanding of React by building a very simple application, so let's get started. 
 
 ### The Setup  
-There are a few ways to set up React, and I will show you the simplest way. It's not a way to build complex applications, it is just a way to try the React without installing Node.js, Babel, Webpack and so on.
+There are a few ways to set up React, but I will show you the simplest way. It's not a way to build complex applications, it is just a way to try the React without installing Node.js, Babel, Webpack and so on.
 The simplest way is to create HTML file which loads three CDNs in the head - React, React DOM, and Babel. 
 In the body of our index.html, we add a div tag with the id of #root. This is the entry point for our app. 
-Then, we need to add script like: <script type="text/babel"> tag in the body. We will write all our React code inside that tag. The text/babel script type is necessary for using Babel. We need Babel because React uses something called JSX to write components. Babel transforms the JSX into plain JavaScript so that the browser can understand it.
+Then, we need to add script tag: <script type="text/babel"> in the body. We will write all our React code inside that tag. The text/babel script type is necessary for using Babel. We need Babel because React uses something called JSX to write components. Babel transforms the JSX into plain JavaScript so that the browser can understand it.
 Our index.html:
 ~~~~
 <!DOCTYPE html>
@@ -51,15 +51,15 @@ ReactDOM.render(
     document.getElementById("root")
 );
 ~~~~
-The entry point for our app is <div id="root"></div>. So we’re simply saying to React: "Please, render the Hello component, inside the DOM node with an id of root."
+The place where we mount our app is `<div id="root"></div>`. So we’re simply saying: "React, render the Hello component, inside the DOM node which has id of root."
 ### JSX  
 The HTML-like strings (`<h1>` and `<Hello />`) is the JSX code. It’s not actually HTML, it is closer to JavaScript. JavaScript expressions can be embedded in JSX using curly braces, including variables, functions, and properties.
-Look at two lines of code: 
+Look at this two lines of code: 
 JSX:
 `const heading = <h1 className="site-heading">Hello, React</h1>`
 non-JSX:
 `const heading = React.createElement('h1', { className: 'site-heading' }, 'Hello, React!')`
-JSX is easier to write and understand than creating and appending many elements in vanilla JavaScript, and it is one of the reasons why people love React so much.
+JSX is easier to write and understand than creating and appending many elements in vanilla JavaScript. Probably JSX it is one of the reasons why people love React so much.
 
 ### Working with data in React  
 React has two types of data: props and state. 
@@ -69,7 +69,7 @@ A component can change its internal state directly. It can not change its props 
 
 ### Props  
 Our Hello component is totally static - it always renders out the same message. React give us the ability to write a component once, and then reuse it how we want, this is reusability. Let's change our component so it can display different messages. 
-To do this, we’ll add a prop called message and give it value “my friend”:
+To do this, we’ll add a prop called message and give it value "RSS Student":
 ~~~~
 ReactDOM.render(
     <Hello message="RSS Student" />, 
@@ -151,13 +151,13 @@ class Hello extends React. Component {
     constructor(){
         super();
         this.state = {
-            message: "my friend (from state)!"
+            message: "RSS Student (from state)!"
         };
         this.updateMessage = this.updateMessage.bind(this);
     }
     updateMessage() {
         this.setState({
-            message: "my friend (from changed state)!"
+            message: "RSS Student (from changed state)!"
         });
     }
     render() {
@@ -171,9 +171,10 @@ class Hello extends React. Component {
 }
 ~~~~
 Imoprtant note - calling this.setState() tells React to re-render the component. That is why we see the changes.
-So when we click the button, we'll got this:
+So when we click the button, we'll got this: 
 
+`<screenshot>`
 
-And that's it! Now you have a very basic understanding of what is the React and how it works. On the Internet, you can find many tutorials and articles about React. For example, start at https://reactjs.org/.
+Our app is very primitive, but by creating it, we reviewed basic concepts of React: components, props, state and how to change state and how to display component on the page. And that's it! Now you have a very basic understanding of what is the React and how it works. On the Internet, you can find many tutorials and articles about React. Go ahead, for example, start at https://reactjs.org/.
 
 Thank you for your attention, and all the best! 
