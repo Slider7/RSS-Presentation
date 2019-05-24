@@ -21,35 +21,294 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+		<style>
+		  .span-code{
+				text-decoration: italic;
+				color: dodgerblue;
+			}
+			.note{
+				font-size: 20px;
+			}
+			.copyright{
+				font-size: 16px;
+				color: white;
+				padding-left: 10px;
+				width: 25%;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
+				<p class='copyright'>by Kemalkhan Shlembayev, based on materials<br> from 
+						<a href='reactjs.org'>reactjs.org</a> & <a href='https://medium.freecodecamp.org/@perborgen'>Per Harald Borgen(freeCodeCamp)</a></p>
 			<div class="slides">
-				<section data-markdown>
-					<h3>Introduction to React</h3>
-					<h4>React is a JavaScript library for building user interfaces, developed by FaceBook.</h4>
-
+				<section>
+						<h2>Introduction to React</h2>
+						<hr>
+						<h3>What is React?</h3>
+						<ul>
+							<li>React is one of the most popular JavaScript libraries.</li>
+							<li>It is an open-source project created by Facebook.</li> 
+							<li>Unlike Angular, React is not a framework, it's library for build user intefaces.</li> 
+							<li>In MVC application (Model-View-Controller), React builds <b><span class="span-code">View</span></b> layer.</li> 
+						</ul>
 				</section>
 
 				<section>
-					Slide 2
+					<section>
+						<h3>The Setup</h3>
+						<hr>
+						<p>There are a few ways to set up React.</p>
+						<p>To try React without installing Node.js, Babel, Webpack and so on, we'll choose the simplest way - </p>
+						<ul>
+							<li><p>create HTML file which loads three CDNs in the head - React, React DOM, and Babel.</p></li>
+							<li><p>add this script tag in the body: <pre><code><script type="text/babel"></script></code></pre></p></li>
+						</ul>
+						<p>All our React code wil be written inside that tag. Look at the next slide.</p>
+					</section>	
+					<section>
+							<p>Our index.html: </p>
+							<pre>
+								<code>
+&lt!DOCTYPE html>
+&lthtml>
+  &lthead>
+    &ltmeta charset="utf-8" />
+    &lttitle>Hello React!&lt/title>
+    &ltscript src="https://unpkg.com/react@16/umd/react.development.js">&lt/script>
+    &ltscript src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">&lt/script>
+    &ltscript src="https://unpkg.com/babel-standalone@6.26.0/babel.js">&lt/script>
+  &lt/head>
+
+  &ltbody>
+    &ltdiv id="root">&lt/div>
+    &ltscript type="text/babel">
+  // Your React code
+    &lt/script>
+  &lt/body>
+&lt/html>		
+								</code>
+							</pre>
+					</section>
 				</section>
+
 				<section>
-					Slide 3
+					<section>
+							<h3>Components</h3>
+							<hr>
+							<p>We use React to create components.</p>
+							<p>Components can be class-based or functional. In this example, we will use class-based components.</p>
+							<p>Let's create a component named "Hello" by extending React's Component class:</p>
+							<pre>
+								<code>
+class Hello extends React.Component {
+  render() {
+    return <h1>Hello world!</h1>;
+  }
+}
+								</code>
+							</pre>
+					</section>
+				
+					<section>
+						<h3>Component's	method</h3>
+						<p>In this example, we have one method inside class - it's called render().</p>
+						<p>Inside <em>render()</em> method we return what we want to draw on the page - here we want from React to <u>draw an h1 tag with the text "Hello world!" </u>. </p>
+						<pre>
+							<code>
+render() {
+  return <h1>Hello world!</h1>;
+}
+							</code>
+						</pre>
+						<p>To display component on the screen, we use ReactDOM.render():</p>
+						<pre>
+							<code>
+ReactDOM.render(
+  &ltHello /&gt, 
+  document.getElementById("root")
+);
+							</code>
+						</pre>
+					</section>
 				</section>
+
 				<section>
-					Slide 4
+					<h3>JSX</h3>
+					<p>The HTML-like strings <span class='span-code'>&lth1&gt</span> and <span class='span-code'>&ltHello /&gt</span> is the JSX code.</p>
+					<p>It’s not actually HTML, it is closer to JavaScript. JavaScript expressions can be embedded in JSX using curly braces, including variables, functions, and properties.</p>
+					<p>Look at this two lines of code: </p>
+					<pre>
+						<code>
+ JSX:
+const heading = <h1 className="heading">Hello, React!</h1>
+
+non-JSX:
+const heading = React.createElement('h1', { className: 'heading' }, 'Hello, React!');
+						</code>
+					</pre>
+					<p>JSX is easier to write and understand than creating and appending many elements in vanilla JavaScript.</p>
 				</section>
+
 				<section>
-					Slide 5
+					<section>
+						<h3>Working with data in React</h3>
+						<hr>
+						<ul>
+							<li>React has two types of data: <strong>props and state</strong>. </li>
+							<li>The state is private and can be changed by the component itself. </li>
+							<li>Props are external, it's passed down from higher-level components, which also control the data.</li>
+							<li>A component can change its internal state directly. It can not change its props directly.</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Props</h3>
+						<hr>
+						<p>With React we can write a component once, and then reuse it how we want. To make our component reusable, we’ll add a prop called message and give it value "RSS Student": </p>
+						<pre>
+							<code>
+ReactDOM.render( &ltHello message="RSS Student" />, document.getElementById("root") );
+							</code>
+						</pre>
+
+						<p>Now we can access this prop inside the Hello component by referencing this.props.message:</p>
+						<pre>
+							<code>
+class Hello extends React.Component {
+  render() {
+    return &lth1>Hello {this.props.message}!&lt/h1>;
+  }
+}
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<h3>State</h3>
+						<hr>
+						<p>If we want to change the data in our app - we need to store data in a component’s state.</p>
+					  <p>To initialize the state, we need to set this.state in the constructor() method of the class. 
+							 Our <span class='span-code'>state</span> is an object, which in our case has one key called <em>message</em>: </p>
+						<pre>
+							<code>
+class Hello extends React. Component {
+  constructor(){
+  // super() must be called before the first access to the keyword 'this'
+    super();
+    this.state = {
+      message: "RSS Student (from state)!"
+    };
+  }
+  render() {
+    return &lth1>Hello {this.state.message}!&lt/h1>;
+  }
+}
+							</code>
+						</pre>
+					</section>
+				
 				</section>
+
 				<section>
-					Slide 6
+					<h3>Changing the state</h3>
+					<p>To modify the state, we add a method <span class="span-code">updateMessage()</span>, 
+						inside of which we call <span class='span-code'>this.setState()</span>, and pass the new state object as the argument.</p>
+					<pre>
+						<code>
+class Hello extends React. Component {
+  constructor(){
+    super();
+    this.state = {
+      message: "RSS Student (from state)!"
+		};
+/* In the constructor we need to bind the 'this' keyword to the updateMessage method.
+  (or we can use arrow function). */
+  this.updateMessage = this.updateMessage.bind(this);
+}
+  updateMessage() {
+    this.setState({
+      message: "RSS Student (from CHANGED state)!"
+    });
+  }    
+
+  render() {
+    return <h1>Hello {this.state.message}!</h1>;
+  }
+}
+						</code>
+					</pre>
+				</section>
+		
+				<section>
+					<h3>Event Handlers</h3>
+					<p>Now we need some user control to call the <span class="span-code">updateMessage()</span> method. Let’s add a button to our app: </p>
+					<pre>
+						<code>
+render() {
+  return (
+    &ltdiv>
+      &lth1>Hello {this.state.message}!&lt/h1>
+      &ltbutton onClick={this.updateMessage}>Click me!&lt/button>
+    &lt/div>   
+  )
+}
+						</code>
+					</pre>
+					<p>We attach an event listener for the onClick event of our button.</p>
+					<p class="note">
+						Now, when button will clicked, component will call the <span class="span-code">updateMessage()</span> method. 
+						In that method we call <span class="span-code">this.setState()</span> which changes the value of <span class="span-code">this.state.message</span>. 
+					</p>
+					<p class="note">
+							Important note - properties and methods in JSX are camelCase - onclick will become <span class="span-code">onClick</span>. 
+					</p>
+				</section>
+
+				<section>
+						<p>The <span class="span-code">Hello</span> component:</p>
+						<pre><code>
+class Hello extends React. Component {
+  constructor(){
+    super();
+    this.state = {
+      message: "RSS Student (from state)!"
+  };
+  this.updateMessage = this.updateMessage.bind(this);
+}
+  updateMessage() {
+    this.setState({
+      message: "RSS Student (from changed state)!"
+    });
+  }
+  render() {
+    return (
+      &ltdiv>
+        &lth1>Hello {this.state.message}!&lt/h1>
+        &ltbutton onClick={this.updateMessage}>Click me!&lt/button>
+      &lt/div>   
+    )
+  }
+}
+						</code></pre>						
+					  <p class="note">Important note - calling <span class="span-code">this.setState()</span> tells React to re-render the component. That is why we see the changes.</p>
+				</section>
+
+				<section>
+					<h3>Conclusion</h3>
+					<hr>
+						<p>By creating this simplest app, we reviewed basic concepts of React: </p>
+						<ul>
+							<li>Components</li>
+							<li>Props</li>
+							<li>State</li>
+							<li>Changing the state and how to display component on the page</li>
+						</ul>  
+						<p>Now you have a very basic understanding of what is the React and how it works.</p>
+						<br>
+						Thank you for your attention, and all the best! 
 				</section>
 			</div>
-
-
-
 		</div>
 
 		<script src="js/reveal.js"></script>
@@ -67,5 +326,6 @@
 				]
 			});
 		</script>
+		
 	</body>
 </html>

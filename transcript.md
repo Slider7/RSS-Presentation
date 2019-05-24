@@ -170,7 +170,7 @@ class Hello extends React. Component {
     }
 }
 ~~~~
-Imoprtant note - calling this.setState() tells React to re-render the component. That is why we see the changes.
+Important note - calling this.setState() tells React to re-render the component. That is why we see the changes.
 So when we click the button, we'll got this: 
 
 `<screenshot>`
