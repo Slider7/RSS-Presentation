@@ -1,5 +1,9 @@
-## Introduction to React
-[https://reactjs.org](https://reactjs.org)
+## Introduction to React  
+
+
+Hello everybody! My neme is Kemalkhan Shlembayev, i am a student of RSSchool. 
+Today we will talk about React.
+
 ### What is React?
 React is one of the most popular JavaScript libraries. 
 It is an open-source project created by Facebook.
@@ -145,9 +149,9 @@ render() {
 We attach an event listener for the onClick event of our button. 
 Note -properties and methods in JSX are camelCase - onclick will become onClick. 
 Now, when button will clicked, component will call the updateMessage method. In that method we call this.setState() which changes the value of this.state.message. 
-#### The Hello component:  
+#### The Hello component, final version:  
 ~~~~
-class Hello extends React. Component {
+class Hello extends React.Component {
     constructor(){
         super();
         this.state = {
@@ -171,10 +175,7 @@ class Hello extends React. Component {
 }
 ~~~~
 Important note - calling this.setState() tells React to re-render the component. That is why we see the changes.
-So when we click the button, we'll got this: 
 
-`<screenshot>`
-
-Our app is very primitive, but by creating it, we reviewed basic concepts of React: components, props, state and how to change state and how to display component on the page. And that's it! Now you have a very basic understanding of what is the React and how it works. On the Internet, you can find many tutorials and articles about React. Go ahead, for example, start at https://reactjs.org/.
+Our app is very primitive, but by creating it, we reviewed basic concepts of React: components, props, state and how to change state and how to display component on the page. And that's it! Now you have a very basic understanding of what is the React and how it works. 
 
 Thank you for your attention, and all the best! 
